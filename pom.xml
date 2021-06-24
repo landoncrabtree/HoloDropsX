@@ -45,6 +45,27 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.cryptomorin.xseries</pattern>
+                                    <!-- Be sure to change the package below -->
+                                    <shadedPattern>dev.proflix.holodropsx.libs.xseries</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>com/cryptomorin/xseries/NMSExtras*</exclude>
+                                        <exclude>com/cryptomorin/xseries/NoteBlockMusic*</exclude>
+                                        <exclude>com/crypromorin/xseries/XBiome*</exclude>
+                                        <exclude>com/crypromorin/xseries/XBlock*</exclude>
+                                        <exclude>com/crypromorin/xseries/XEnchantment*</exclude>
+                                        <exclude>com/crypromorin/xseries/XEntity*</exclude>
+                                        <exclude>com/crypromorin/xseries/XSound*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>
@@ -82,6 +103,11 @@
             <artifactId>annotations</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cryptomorin</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>8.1.0</version>
         </dependency>
     </dependencies>
 

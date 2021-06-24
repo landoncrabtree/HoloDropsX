@@ -1,14 +1,14 @@
 package dev.proflix.holodropsx.commands;
 
+import com.cryptomorin.xseries.XMaterial;
 import dev.proflix.holodropsx.util.ConfigReader;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Check implements CommandExecutor {
 
@@ -20,10 +20,10 @@ public class Check implements CommandExecutor {
     }
 
     private void check(@NotNull CommandSender sender) {
-        List<Material> mats = ConfigReader.getMissingItems();
+        ArrayList<XMaterial> mats = ConfigReader.getMissingItems();
         if (mats.size() > 0) {
             sender.sendMessage(prefix + ChatColor.RESET + ChatColor.RED + "Your config is missing:");
-            for (Material m : mats) {
+            for (XMaterial m : mats) {
                 sender.sendMessage(m.toString());
             }
         } else {

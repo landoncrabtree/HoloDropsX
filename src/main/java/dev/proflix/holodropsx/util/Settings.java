@@ -1,7 +1,8 @@
 package dev.proflix.holodropsx.util;
 
+import com.cryptomorin.xseries.XMaterial;
 import dev.proflix.holodropsx.Main;
-import org.bukkit.Material;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +24,6 @@ public class Settings {
     private int protTime;
 
     public void initialize() {
-        assert Main.getInstance() != null;
         Objects.requireNonNull(Main.getInstance()).reloadConfig();
         settings.clear();
         format.clear();
@@ -49,7 +49,9 @@ public class Settings {
         format.put("protection-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("protection-format")))));
 
         for (String configMaterial : Objects.requireNonNull(Main.getInstance().getConfig().getConfigurationSection("item-names")).getKeys(false)) {
-            String mat = Objects.requireNonNull(Main.getInstance().getConfig().getString("item-names." + configMaterial)).replaceAll("%item%", Objects.requireNonNull(Material.getMaterial(configMaterial)).name());
+            String actualMaterialName = Objects.requireNonNull(XMaterial.valueOf(configMaterial).toString().toLowerCase());
+            String actualName = actualMaterialName.replace("_", " ");
+            String mat = Objects.requireNonNull(Main.getInstance().getConfig().getString("item-names." + configMaterial)).replaceAll("%name%", WordUtils.capitalize(actualName));
             names.put(configMaterial, Strings.color(Objects.requireNonNull(mat)));
         }
     }

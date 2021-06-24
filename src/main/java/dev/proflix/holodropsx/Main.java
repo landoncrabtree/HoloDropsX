@@ -10,16 +10,22 @@ import dev.proflix.holodropsx.listeners.protection.BlockDropListener;
 import dev.proflix.holodropsx.util.Glow;
 import dev.proflix.holodropsx.util.Settings;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
-    private static @Nullable Main m;
+    private static Main m;
     private static Settings settings;
 
-    public static @Nullable Main getInstance() {
+    public static Main getInstance() {
+        if (m == null) {
+            try {
+                m = new Main();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return m;
     }
 
