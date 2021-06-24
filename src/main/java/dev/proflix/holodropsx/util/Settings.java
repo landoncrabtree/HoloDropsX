@@ -48,8 +48,7 @@ public class Settings {
         format.put("protection-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("protection-format")))));
 
         for (String configMaterial : Objects.requireNonNull(Main.getInstance().getConfig().getConfigurationSection("item-names")).getKeys(false)) {
-            String mat = Main.getInstance().getConfig().getString("item-names." + configMaterial);
-            assert mat != null;
+            String mat = Objects.requireNonNull(Main.getInstance().getConfig().getString("item-names." + configMaterial)).replaceAll("%item%", configMaterial);
             names.put(configMaterial, Strings.color(Objects.requireNonNull(mat)));
         }
     }
