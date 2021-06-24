@@ -1,21 +1,22 @@
-package me.fsml.holodrops.listeners;
+package dev.proflix.holodropsx.listeners;
 
-import me.fsml.holodrops.Main;
-import me.fsml.holodrops.util.Strings;
+import dev.proflix.holodropsx.Main;
+import dev.proflix.holodropsx.util.Strings;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemMergeEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class ItemMergeListener implements Listener {
     
     @EventHandler
-    public void itemMerge(ItemMergeEvent e) {
+    public void itemMerge(@NotNull ItemMergeEvent e) {
         Item drop = e.getTarget();
         Item ent = e.getEntity();
         // if theyre both protected compare the owners
         if (isItemProtected(drop) && isItemProtected(ent)) {
-            if (Main.m.settings.getProtectedDrops().get(drop) != Main.m.settings.getProtectedDrops().get(ent)) {
+            if (Main.getSettings().getProtectedDrops().get(drop) != Main.getSettings().getProtectedDrops().get(ent)) {
                 e.setCancelled(true);
                 return;
             }
@@ -26,7 +27,7 @@ public class ItemMergeListener implements Listener {
             return;
         }
         int count = ent.getItemStack().getAmount() + drop.getItemStack().getAmount();
-        if (Main.m.settings.isWorldEnabled(drop.getWorld().getName())) {
+        if (Main.getSettings().isWorldEnabled(drop.getWorld().getName())) {
             String name = Strings.makeName(drop, count, "", 0);
             drop.setCustomName(name);
             drop.setCustomNameVisible(true);
@@ -34,7 +35,7 @@ public class ItemMergeListener implements Listener {
     }
     
     private boolean isItemProtected(Item item) {
-        return Main.m.settings.getProtectedDrops().containsKey(item);
+        return Main.getSettings().getProtectedDrops().containsKey(item);
     }
     
 }

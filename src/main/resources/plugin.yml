@@ -1,27 +1,27 @@
 name: ${project.name}
 version: ${project.version}
-main: me.fsml.holodrops.Main
+main: dev.proflix.holodropsx.Main
 api-version: 1.13
-authors: [fsml]
+authors: [_ProfliX_]
 description: ${project.description}
 website: ${project.url}
 commands:
-  hdreload:
+  hdxreload:
     usage: /<command>
     description: Reload the config
     permission: holodrops.reload
-    permission-message: "§4§lHoloDrops §r§cRequired permission: <permission>"
+    permission-message: "§c§lHoloDropsX §r§cRequired permission: <permission>"
     aliases: [hdr]
-  hdcheck:
+  hdxcheck:
     usage: /<command>
     description: Check for missing items in the config
     permission: holodrops.check
-    permission-message: "§4§lHoloDrops §r§cRequired permission: <permission>"
+    permission-message: "§c§lHoloDropsX §r§cRequired permission: <permission>"
     aliases: [hdc]
 permissions:
-  holodrops.reload:
+  holodropsx.reload:
     description: Allows the ability to reload the config
     default: op
-  holodrops.check:
+  holodropsx.check:
     description: Check for missing items in the config
     default: op

@@ -1,26 +1,29 @@
-package me.fsml.holodrops.util;
+package dev.proflix.holodropsx.util;
 
-import me.fsml.holodrops.Main;
+import dev.proflix.holodropsx.Main;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class Settings {
     
-    private HashMap<String, Boolean> settings = new HashMap<String, Boolean>();
-    private HashMap<String, String> format = new HashMap<String, String>();
-    private HashMap<String, String> names = new HashMap<String, String>();
+    private final HashMap<String, Boolean> settings = new HashMap<>();
+    private final HashMap<String, String> format = new HashMap<>();
+    private final HashMap<String, String> names = new HashMap<>();
     private List<String> enabledWorlds;
     private List<String> blacklist;
     private List<String> glowlist;
     private List<String> protitemlist;
-    private HashMap<Item, Player> protectedDrops = new HashMap<Item, Player>();
+    private final HashMap<Item, Player> protectedDrops = new HashMap<>();
     private int protTime;
     
     public void initialize() {
-        Main.m.reloadConfig();
+        assert Main.getInstance() != null;
+        Objects.requireNonNull(Main.getInstance()).reloadConfig();
         settings.clear();
         format.clear();
         names.clear();
@@ -38,15 +41,16 @@ public class Settings {
         settings.put("protect-block-drops", ConfigReader.getBoolean("protection-sources.block-drops"));
         protTime = ConfigReader.getInt("protection-time");
         
-        format.put("stack-count", Strings.color(ConfigReader.getString("stack-count")));
-        format.put("holo-prefix", Strings.color(ConfigReader.getString("holo-prefix")));
-        format.put("holo-suffix", Strings.color(ConfigReader.getString("holo-suffix")));
-        format.put("holo-format", Strings.color(ConfigReader.getString("holo-format")));
-        format.put("protection-format", Strings.color(ConfigReader.getString("protection-format")));
+        format.put("stack-count", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("stack-count")))));
+        format.put("holo-prefix", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-prefix")))));
+        format.put("holo-suffix", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-suffix")))));
+        format.put("holo-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-format")))));
+        format.put("protection-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("protection-format")))));
         
-        for (String configMaterial : Main.m.getConfig().getConfigurationSection("item-names").getKeys(false)) {
-            String mat = Main.m.getConfig().getString("item-names." + configMaterial);
-            names.put(configMaterial, Strings.color(mat));
+        for (String configMaterial : Objects.requireNonNull(Main.getInstance().getConfig().getConfigurationSection("item-names")).getKeys(false)) {
+            String mat = Main.getInstance().getConfig().getString("item-names." + configMaterial);
+            assert mat != null;
+            names.put(configMaterial, Strings.color(Objects.requireNonNull(mat)));
         }
     }
     
@@ -71,23 +75,23 @@ public class Settings {
     }
     
     public String getStackFormat() {
-        return format.get("stack-count");
+        return Color.colorizeAll(format.get("stack-count"));
     }
     
     public String getPrefix() {
-        return format.get("holo-prefix");
+        return Color.colorizeAll(format.get("holo-prefix"));
     }
     
     public String getSuffix() {
-        return format.get("holo-suffix");
+        return Color.colorizeAll(format.get("holo-suffix"));
     }
     
     public String getFormat() {
-        return format.get("holo-format");
+        return Color.colorizeAll(format.get("holo-format"));
     }
     
     public String getProtFormat() {
-        return format.get("protection-format");
+        return Color.colorizeAll(format.get("protection-format"));
     }
     
     public boolean isWorldEnabled(String world) {
@@ -113,11 +117,7 @@ public class Settings {
     }
     
     public String getNameFromMat(String material) {
-        if (names.containsKey(material)) {
-            return names.get(material);
-        } else {
-            return "";
-        }
+        return names.getOrDefault(material, "");
     }
     
     public boolean protectionEnabled() {
@@ -125,7 +125,7 @@ public class Settings {
     }
     
     public String protectionFormat() {
-        return format.get("protection-format");
+        return Color.colorizeAll(format.get("protection-format"));
     }
     
     public List<String> getProtItemList() {
@@ -140,7 +140,7 @@ public class Settings {
         return protTime;
     }
     
-    public HashMap<Item, Player> getProtectedDrops() {
+    public @NotNull HashMap<Item, Player> getProtectedDrops() {
         return protectedDrops;
     }
     

@@ -1,18 +1,20 @@
-package me.fsml.holodrops.util;
+package dev.proflix.holodropsx.util;
 
-import me.fsml.holodrops.Main;
+import dev.proflix.holodropsx.Main;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 
 public class Protection {
     
-    public static void dealWithProt(Item item, Player p){
-        if (Main.m.settings.getProtItemList().isEmpty() || Main.m.settings.getProtItemList().contains(item.getItemStack().getType().toString())) {
-            Main.m.settings.getProtectedDrops().put(item, p);
+    public static void dealWithProt(@NotNull Item item, @NotNull Player p){
+        if (Main.getSettings().getProtItemList().isEmpty() || Main.getSettings().getProtItemList().contains(item.getItemStack().getType().toString())) {
+            Main.getSettings().getProtectedDrops().put(item, p);
+            assert Main.getInstance() != null;
             new BukkitRunnable() {
-                int time = Main.m.settings.getProtTime();
-                String pName = p.getName();
+                int time = Main.getSettings().getProtTime();
+                @NotNull String pName = p.getName();
                 public void run() {
                     try {
                         if (time <= 0) {
@@ -23,12 +25,12 @@ public class Protection {
                         this.cancel();
                     }
                     if (time <= 0) {
-                        Main.m.settings.getProtectedDrops().remove(item);
+                        Main.getSettings().getProtectedDrops().remove(item);
                         this.cancel();
                     }
                     time--;
                 }
-            }.runTaskTimerAsynchronously(Main.m, 0, 20);
+            }.runTaskTimerAsynchronously(Main.getInstance(), 0, 20);
         }
     }
     

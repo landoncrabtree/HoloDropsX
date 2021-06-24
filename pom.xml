@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.fsml</groupId>
-    <artifactId>HoloDrops</artifactId>
-    <version>2.6</version>
+    <groupId>dev.proflix</groupId>
+    <artifactId>HoloDropsX</artifactId>
+    <version>3.0.0</version>
     <packaging>jar</packaging>
-    <name>HoloDrops</name>
+    <name>HoloDropsX</name>
     <description>Shows the item's name above it when dropped.</description>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.15-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.17-R0.1-SNAPSHOT</spigot.version>
     </properties>
 
-    <url>https://www.spigotmc.org/members/fsml.247556/</url>
+    <url>https://www.spigotmc.org/members/_proflix_.554163/</url>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -76,6 +76,12 @@
             <artifactId>spigot-api</artifactId>
             <version>${spigot.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

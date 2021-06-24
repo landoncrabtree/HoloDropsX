@@ -1,32 +1,32 @@
-package me.fsml.holodrops.commands;
+package dev.proflix.holodropsx.commands;
 
-import me.fsml.holodrops.Main;
-import me.fsml.holodrops.util.ConfigReader;
+import dev.proflix.holodropsx.util.ConfigReader;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class Check implements CommandExecutor {
     
-    private String prefix = "" + ChatColor.DARK_RED + ChatColor.BOLD + "HoloDrops ";
+    private final String prefix = "" + ChatColor.DARK_RED + ChatColor.BOLD + "HoloDropsX ";
     
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         check(sender);
         return true;
     }
     
-    private void check(CommandSender sender) {
+    private void check(@NotNull CommandSender sender) {
         List<Material> mats = ConfigReader.getMissingItems();
         if (mats.size() > 0) {
             sender.sendMessage(prefix + ChatColor.RESET + ChatColor.RED + "Your config is missing:");
             for (Material m : mats) {
                 sender.sendMessage(m.toString());
             }
-        } else if (mats.size() == 0){
+        } else {
             sender.sendMessage(prefix + ChatColor.RESET + ChatColor.GREEN + "Your config isn't missing anything");
         }
     }

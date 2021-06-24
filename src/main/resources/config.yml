@@ -1,7 +1,6 @@
-# Language and settings file
+# HoloDropsX : Language and settings file
 
-### HOLOGRAMS ###
-
+### HOLOGRAMS SECTION ###
 # displays the %amount% of items in the stack
 stack-count: "&fx%amount%"
 # show stack count of 1 on the item name
@@ -15,16 +14,14 @@ holo-suffix: ""
 # you can also directly edit this instead of changing the formats above
 holo-format: "%P%%I% %C%%S%"
 
-### WORLDS ###
-
+### WORLDS SECTION ###
 # worlds where item drops get holos
 enabled-worlds:
   - "world"
   - "world_nether"
   - "world_the_end"
 
-### MISC ###
-
+### MISC SECTION ###
 # enable to make default item names also appear in item frames (renamed items show up by default from vanilla)
 item-frame-holos: false
 
@@ -35,8 +32,7 @@ custom-names-only: false
 blacklist:
   - "ShopItem"
 
-### GLOW ###
-
+### GLOW SECTION ###
 # item-glow shows items through walls and in dark areas
 item-glow: false
 # glow-color changes the color items glow in, currently uses the last color seen in the item name
@@ -48,7 +44,6 @@ glowlist:
   #- "&4Diamond Sword"
 
 ### DROP PROTECTION ###
-
 # drops will be protected and only the player who created the drop can pick it up
 drop-protection: false
 # seconds before a drop becomes available to everyone else. set to 0 for unlimited protection
@@ -64,8 +59,7 @@ protection-sources:
 
 
 
-### NAMES ###
-
+### NAMES SECTION ###
 # add/remove/edit items & names here (some of these you cant get as drops, fyi)
 item-names:
   ACACIA_BOAT: "Acacia Boat"
