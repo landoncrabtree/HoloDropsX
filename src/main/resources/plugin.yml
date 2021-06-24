@@ -9,13 +9,13 @@ commands:
   hdxreload:
     usage: /<command>
     description: Reload the config
-    permission: holodrops.reload
+    permission: holodropsx.reload
     permission-message: "§c§lHoloDropsX §r§cRequired permission: <permission>"
     aliases: [hdr]
   hdxcheck:
     usage: /<command>
     description: Check for missing items in the config
-    permission: holodrops.check
+    permission: holodropsx.check
     permission-message: "§c§lHoloDropsX §r§cRequired permission: <permission>"
     aliases: [hdc]
 permissions:
