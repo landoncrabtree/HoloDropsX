@@ -7,14 +7,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 public class Protection {
-    
-    public static void dealWithProt(@NotNull Item item, @NotNull Player p){
+
+    public static void dealWithProt(@NotNull Item item, @NotNull Player p) {
         if (Main.getSettings().getProtItemList().isEmpty() || Main.getSettings().getProtItemList().contains(item.getItemStack().getType().toString())) {
             Main.getSettings().getProtectedDrops().put(item, p);
             assert Main.getInstance() != null;
             new BukkitRunnable() {
                 int time = Main.getSettings().getProtTime();
                 @NotNull String pName = p.getName();
+
                 public void run() {
                     try {
                         if (time <= 0) {
@@ -33,6 +34,6 @@ public class Protection {
             }.runTaskTimerAsynchronously(Main.getInstance(), 0, 20);
         }
     }
-    
-    
+
+
 }

@@ -9,7 +9,7 @@ import org.bukkit.event.entity.ItemMergeEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemMergeListener implements Listener {
-    
+
     @EventHandler
     public void itemMerge(@NotNull ItemMergeEvent e) {
         Item drop = e.getTarget();
@@ -33,9 +33,9 @@ public class ItemMergeListener implements Listener {
             drop.setCustomNameVisible(true);
         }
     }
-    
+
     private boolean isItemProtected(Item item) {
         return Main.getSettings().getProtectedDrops().containsKey(item);
     }
-    
+
 }

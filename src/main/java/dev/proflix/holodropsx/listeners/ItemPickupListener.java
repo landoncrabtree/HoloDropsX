@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemPickupListener implements Listener {
-    
+
     @EventHandler
     public void itemPickup(@NotNull EntityPickupItemEvent e) {
         if (Main.getSettings().getProtectedDrops().containsKey(e.getItem())) {
@@ -25,5 +25,5 @@ public class ItemPickupListener implements Listener {
             drop.setCustomName(name);
         }
     }
-    
+
 }

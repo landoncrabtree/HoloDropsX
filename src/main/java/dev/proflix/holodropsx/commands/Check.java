@@ -11,14 +11,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class Check implements CommandExecutor {
-    
+
     private final String prefix = "" + ChatColor.DARK_RED + ChatColor.BOLD + "HoloDropsX ";
-    
+
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         check(sender);
         return true;
     }
-    
+
     private void check(@NotNull CommandSender sender) {
         List<Material> mats = ConfigReader.getMissingItems();
         if (mats.size() > 0) {
@@ -30,5 +30,5 @@ public class Check implements CommandExecutor {
             sender.sendMessage(prefix + ChatColor.RESET + ChatColor.GREEN + "Your config isn't missing anything");
         }
     }
-    
+
 }

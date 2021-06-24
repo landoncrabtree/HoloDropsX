@@ -10,27 +10,27 @@ import java.util.List;
 import java.util.Objects;
 
 public class ConfigReader {
-    
+
     public static boolean getBoolean(@NotNull String option) {
         assert Main.getInstance() != null;
         return Main.getInstance().getConfig().getBoolean(option);
     }
-    
+
     public static @Nullable String getString(@NotNull String option) {
         assert Main.getInstance() != null;
         return Main.getInstance().getConfig().getString(option);
     }
-    
+
     public static @NotNull List<String> getStringList(@NotNull String option) {
         assert Main.getInstance() != null;
         return Main.getInstance().getConfig().getStringList(option);
     }
-    
+
     public static int getInt(@NotNull String option) {
         assert Main.getInstance() != null;
         return Main.getInstance().getConfig().getInt(option);
     }
-    
+
     public static @NotNull List<Material> getMissingItems() {
         ArrayList<Material> configMats = new ArrayList<>();
         assert Main.getInstance() != null;
@@ -46,5 +46,5 @@ public class ConfigReader {
         }
         return configMats;
     }
-    
+
 }

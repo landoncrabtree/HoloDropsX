@@ -16,8 +16,8 @@ import java.util.Objects;
 
 
 public class ItemDropListener implements Listener {
-    
-    
+
+
     @EventHandler
     public void itemDrop(@NotNull ItemSpawnEvent e) {
         Item drop = e.getEntity();
@@ -36,7 +36,7 @@ public class ItemDropListener implements Listener {
                 drop.setCustomName(name);
             }
             drop.setCustomNameVisible(true);
-            
+
             if (Main.getSettings().getItemGlow()) {
                 String rawName = Strings.makeItemName(drop);
                 if (Main.getSettings().isGlowlisted(rawName)) { // check the raw name
@@ -49,7 +49,7 @@ public class ItemDropListener implements Listener {
             }
         }
     }
-    
+
     private boolean checkBlacklistLore(@NotNull ItemMeta meta) {
         if (meta.hasLore()) {
             for (String s : Objects.requireNonNull(meta.getLore())) {
@@ -60,5 +60,5 @@ public class ItemDropListener implements Listener {
         }
         return false;
     }
-    
+
 }

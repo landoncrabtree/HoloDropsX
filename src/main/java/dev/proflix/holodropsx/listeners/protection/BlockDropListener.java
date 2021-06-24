@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class BlockDropListener implements Listener {
-    
+
     @EventHandler
     public void blockBreak(@NotNull BlockDropItemEvent e) {
         if (!Main.getSettings().protectionEnabled()) {
@@ -26,13 +26,13 @@ public class BlockDropListener implements Listener {
         }
         List<Item> drops = e.getItems();
         Player p = e.getPlayer();
-        
+
         for (Item item : drops) {
             Protection.dealWithProt(item, p);
         }
-        
-        
+
+
     }
-    
-    
+
+
 }

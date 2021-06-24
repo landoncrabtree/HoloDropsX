@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Strings {
-    
+
     public static @NotNull String color(@NotNull String string) {
         return Color.colorizeAll(string);
     }
@@ -26,11 +26,11 @@ public class Strings {
         }
         return list;
     }
-    
+
     public static @Nullable String stripColor(String string) {
         return ChatColor.stripColor(string);
     }
-    
+
     public static String makeName(@NotNull Item drop, int count, @NotNull String playerName, int time) {
         String formatted = !playerName.equals("") ? Main.getSettings().getProtFormat() + Main.getSettings().getFormat() : Main.getSettings().getFormat();
         String itemName;
@@ -39,21 +39,20 @@ public class Strings {
             itemName = "";
         }
         formatted = rePlaceholders(formatted, itemName, count, playerName, time);
-        
+
         return itemName.length() == 0 ? itemName : formatted;
-        
+
     }
-    
+
     public static String makeItemName(@NotNull Item drop) {
         String itemName;
-        
+
         ItemMeta meta = drop.getItemStack().getItemMeta();
-        
+
         if (drop.getItemStack().getType() == Material.WRITTEN_BOOK) {
             assert meta != null;
-            itemName = bookTitle((BookMeta)meta);
-        }
-        else {
+            itemName = bookTitle((BookMeta) meta);
+        } else {
             assert meta != null;
             if (meta.hasDisplayName() || Main.getSettings().getCustomNamesOnly()) {
                 itemName = meta.getDisplayName();
@@ -61,16 +60,16 @@ public class Strings {
                 itemName = Main.getSettings().getNameFromMat(drop.getItemStack().getType().toString());
             }
         }
-        
+
         return itemName;
     }
-    
+
     private static @NotNull String bookTitle(@NotNull BookMeta meta) {
         String title = meta.getTitle() == null ? " " : meta.getTitle();
         String itemName = ConfigReader.getString("item-names.WRITTEN_BOOK");
         return Objects.requireNonNull(itemName).replace("%title%", title);
     }
-    
+
     private static String rePlaceholders(String formatted, @NotNull String item, int count, @NotNull String playerName, int time) {
         formatted = replaceAndFixSpacing(formatted, "%P%", Main.getSettings().getPrefix());
         formatted = replaceAndFixSpacing(formatted, "%I%", item);
@@ -83,11 +82,11 @@ public class Strings {
             formatted = formatted.replace("%C%", Main.getSettings().getStackFormat().toLowerCase().replace("%amount%", "" + count));
         } else {
             formatted = replaceAndFixSpacing(formatted, "%C%", "");
-            
+
         }
         return formatted;
     }
-    
+
     private static @NotNull String replaceAndFixSpacing(@NotNull String string, @NotNull String replace, @NotNull String replacement) {
         // remove spaces that would have made sense if the placeholder was there
         // %PLAYER% %ITEM%, no player would make it " %ITEM%" or " DIRT"
@@ -100,16 +99,16 @@ public class Strings {
         }
         return string.replace(replace, replacement);
     }
-    
+
     // count is supplied to make a call to rePlaceholders
     public static void makeItemFrameName(@NotNull ItemStack item, int count) {
         ItemMeta meta = item.getItemMeta();
         String formatted = Main.getSettings().getFormat().toUpperCase();
         String itemName;
-    
+
         if (item.getType() == Material.WRITTEN_BOOK) {
             assert meta != null;
-            itemName = bookTitle((BookMeta)meta);
+            itemName = bookTitle((BookMeta) meta);
         } else {
             itemName = Main.getSettings().getNameFromMat(item.getType().name());
         }
@@ -118,9 +117,9 @@ public class Strings {
         assert meta != null;
         meta.setDisplayName(itemName.length() == 0 ? itemName : formatted);
         item.setItemMeta(meta);
-        
+
     }
-    
+
     @SuppressWarnings("rawtypes")
     public static void addWatermark(@NotNull ItemStack item) {
         ItemMeta meta = item.getItemMeta();
@@ -131,7 +130,7 @@ public class Strings {
         meta.setLore(lore);
         item.setItemMeta(meta);
     }
-    
+
     public static void removeWatermark(@NotNull ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         if (hasWatermark(item)) {
@@ -144,7 +143,7 @@ public class Strings {
             item.setItemMeta(meta);
         }
     }
-    
+
     public static boolean hasWatermark(@NotNull ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
@@ -156,10 +155,10 @@ public class Strings {
         }
         return false;
     }
-    
+
     public static boolean isUUID(String name) {
         return (stripColor(name).matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"));
     }
-    
-    
+
+
 }

@@ -41,11 +41,11 @@ public final class Color {
 
     public static String colorizeStandardCodes(String msg) {
         boolean hasMD5 = false;
-        try{
+        try {
             Class.forName("net.md_5.bungee.api.ChatColor");
             hasMD5 = true;
+        } catch (ClassNotFoundException ignored) {
         }
-        catch (ClassNotFoundException ignored){ }
 
         if (hasMD5)
             return ChatColor.translateAlternateColorCodes('&', msg);

@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Glow {
-    
+
     public static final ArrayList<Team> teams = new ArrayList<>();
     public static final Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
-    
+
     public static void setGlowColor(@NotNull ChatColor color, @NotNull Entity entity) {
         String name = "HD" + color.getChar();
         Team team = scoreboard.getTeam(name);
@@ -26,14 +26,14 @@ public class Glow {
         team.setColor(color);
         team.addEntry(entity.getUniqueId().toString());
     }
-    
+
     public static @Nullable ChatColor getColor(String string) {
         string = Strings.color(string);
         String color = ChatColor.getLastColors(string);
         if (color.length() == 0) color = ChatColor.COLOR_CHAR + "f";
         return ChatColor.getByChar(color.charAt(1));
     }
-    
+
     public static void unregister() {
         for (Team team : teams) {
             team.unregister();

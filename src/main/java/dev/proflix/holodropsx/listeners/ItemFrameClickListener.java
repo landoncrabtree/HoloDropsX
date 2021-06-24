@@ -18,12 +18,12 @@ import java.util.Objects;
 
 @SuppressWarnings("ALL")
 public class ItemFrameClickListener implements Listener {
-    
+
     @EventHandler
     public void clickFrame(@NotNull PlayerInteractEntityEvent e) {
         Player p = e.getPlayer();
         if (e.getRightClicked() instanceof ItemFrame && Main.getSettings().getFrames() && e.getHand() == EquipmentSlot.HAND) {
-            ItemFrame frame = (ItemFrame)e.getRightClicked();
+            ItemFrame frame = (ItemFrame) e.getRightClicked();
             if (Main.getSettings().isWorldEnabled(frame.getWorld().getName())) {
                 // empty frame
                 if (frame.getItem().getType() == Material.AIR && p.getItemInHand().getType() != Material.AIR) {
@@ -44,5 +44,5 @@ public class ItemFrameClickListener implements Listener {
             }
         }
     }
-    
+
 }
