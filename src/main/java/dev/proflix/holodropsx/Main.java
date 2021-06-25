@@ -9,6 +9,7 @@ import dev.proflix.holodropsx.listeners.ItemPickupListener;
 import dev.proflix.holodropsx.listeners.protection.BlockDropListener;
 import dev.proflix.holodropsx.util.Glow;
 import dev.proflix.holodropsx.util.Settings;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -35,18 +36,12 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
         m = this;
+        saveDefaultConfig();
         settings = new Settings();
         settings.initialize();
-        getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemMergeListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemFrameClickListener(), this);
-        getServer().getPluginManager().registerEvents(new ItemPickupListener(), this);
-        getServer().getPluginManager().registerEvents(new BlockDropListener(), this);
-        Objects.requireNonNull(getCommand("hdxreload")).setExecutor(new Reload());
-        Objects.requireNonNull(getCommand("hdxcheck")).setExecutor(new Check());
-
+        registerListeners();
+        registerCommands();
     }
 
     @Override
@@ -58,5 +53,18 @@ public final class Main extends JavaPlugin {
             // this try/catch block is to prevent console spam
         }
         settings.fixNames();
+    }
+
+    private void registerListeners() {
+        Bukkit.getPluginManager().registerEvents(new ItemDropListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemMergeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemFrameClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemPickupListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockDropListener(), this);
+    }
+
+    private void registerCommands() {
+        Objects.requireNonNull(getCommand("hdxreload")).setExecutor(new Reload());
+        Objects.requireNonNull(getCommand("hdxcheck")).setExecutor(new Check());
     }
 }

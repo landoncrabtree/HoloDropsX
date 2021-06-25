@@ -12,11 +12,9 @@ public class ItemPickupListener implements Listener {
 
     @EventHandler
     public void itemPickup(@NotNull EntityPickupItemEvent e) {
-        if (Main.getSettings().getProtectedDrops().containsKey(e.getItem())) {
-            if (Main.getSettings().getProtectedDrops().get(e.getItem()) != e.getEntity()) {
-                e.setCancelled(true);
-                return;
-            }
+        if (Main.getSettings().getProtectedDrops().containsKey(e.getItem()) && Main.getSettings().getProtectedDrops().get(e.getItem()) != e.getEntity()) {
+            e.setCancelled(true);
+            return;
         }
         int stack = e.getRemaining();
         if (stack > 0) {

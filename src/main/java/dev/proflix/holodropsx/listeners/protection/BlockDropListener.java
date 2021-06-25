@@ -15,24 +15,13 @@ public class BlockDropListener implements Listener {
 
     @EventHandler
     public void blockBreak(@NotNull BlockDropItemEvent e) {
-        if (!Main.getSettings().protectionEnabled()) {
-            return;
-        }
-        if (!Main.getSettings().isWorldEnabled(e.getPlayer().getWorld().getName())) {
-            return;
-        }
-        if (!Main.getSettings().getBlockProtection()) {
-            return;
-        }
+        if (!Main.getSettings().protectionEnabled()) return;
+        if (!Main.getSettings().isWorldEnabled(e.getPlayer().getWorld().getName())) return;
+        if (!Main.getSettings().getBlockProtection()) return;
         List<Item> drops = e.getItems();
         Player p = e.getPlayer();
-
         for (Item item : drops) {
             Protection.dealWithProt(item, p);
         }
-
-
     }
-
-
 }

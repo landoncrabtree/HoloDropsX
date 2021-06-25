@@ -14,7 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Strings {
+public final class Strings {
+
+    private Strings() {
+        throw new UnsupportedOperationException();
+    }
 
     public static @NotNull String color(@NotNull String string) {
         return Color.colorizeAll(string);

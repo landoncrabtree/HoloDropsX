@@ -20,9 +20,7 @@ public class ItemMergeListener implements Listener {
                 e.setCancelled(true);
                 return;
             }
-        }
-        // if only 1 is protected they dont merge
-        else if (isItemProtected(drop) || isItemProtected(ent)) {
+        } else if (isItemProtected(drop) || isItemProtected(ent)) {
             e.setCancelled(true);
             return;
         }
@@ -37,5 +35,4 @@ public class ItemMergeListener implements Listener {
     private boolean isItemProtected(Item item) {
         return Main.getSettings().getProtectedDrops().containsKey(item);
     }
-
 }

@@ -24,12 +24,8 @@ public class ItemDropListener implements Listener {
         if (Main.getSettings().isWorldEnabled(drop.getWorld().getName())) {
             ItemStack item = drop.getItemStack();
             if (item.hasItemMeta()) {
-                if (checkBlacklistLore(Objects.requireNonNull(item.getItemMeta()))) {
-                    return;
-                }
-                if (Strings.hasWatermark(item)) {
-                    Strings.removeWatermark(item);
-                }
+                if (checkBlacklistLore(Objects.requireNonNull(item.getItemMeta()))) return;
+                if (Strings.hasWatermark(item)) Strings.removeWatermark(item);
             }
             if (!Main.getSettings().getProtectedDrops().containsKey(drop)) {
                 String name = Strings.makeName(drop, item.getAmount(), "", 0);
@@ -60,5 +56,4 @@ public class ItemDropListener implements Listener {
         }
         return false;
     }
-
 }

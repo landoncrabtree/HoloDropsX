@@ -11,10 +11,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Glow {
+public final class Glow {
 
-    public static final ArrayList<Team> teams = new ArrayList<>();
-    public static final Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
+    private Glow() {
+        throw new UnsupportedOperationException();
+    }
+
+    private static final ArrayList<Team> teams = new ArrayList<>();
+    private static final Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard();
 
     public static void setGlowColor(@NotNull ChatColor color, @NotNull Entity entity) {
         String name = "HD" + color.getChar();

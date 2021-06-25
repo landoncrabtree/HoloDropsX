@@ -24,7 +24,7 @@ public class Settings {
     private int protTime;
 
     public void initialize() {
-        Objects.requireNonNull(Main.getInstance()).reloadConfig();
+        Main.getInstance().reloadConfig();
         settings.clear();
         format.clear();
         names.clear();
@@ -42,11 +42,11 @@ public class Settings {
         settings.put("protect-block-drops", ConfigReader.getBoolean("protection-sources.block-drops"));
         protTime = ConfigReader.getInt("protection-time");
 
-        format.put("stack-count", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("stack-count")))));
-        format.put("holo-prefix", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-prefix")))));
-        format.put("holo-suffix", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-suffix")))));
-        format.put("holo-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("holo-format")))));
-        format.put("protection-format", Strings.color(Objects.requireNonNull(Objects.requireNonNull(ConfigReader.getString("protection-format")))));
+        format.put("stack-count", Strings.color(Objects.requireNonNull(ConfigReader.getString("stack-count"))));
+        format.put("holo-prefix", Strings.color(Objects.requireNonNull(ConfigReader.getString("holo-prefix"))));
+        format.put("holo-suffix", Strings.color(Objects.requireNonNull(ConfigReader.getString("holo-suffix"))));
+        format.put("holo-format", Strings.color(Objects.requireNonNull(ConfigReader.getString("holo-format"))));
+        format.put("protection-format", Strings.color(Objects.requireNonNull(ConfigReader.getString("protection-format"))));
 
         for (String configMaterial : Objects.requireNonNull(Main.getInstance().getConfig().getConfigurationSection("item-names")).getKeys(false)) {
             String actualMaterialName = Objects.requireNonNull(XMaterial.valueOf(configMaterial).toString().toLowerCase());
