@@ -1,4 +1,5 @@
 # HoloDropsX : Language and settings file
+# Version: 3.0.3
 
 ### HOLOGRAMS SECTION ###
 # displays the %amount% of items in the stack
@@ -15,7 +16,7 @@ holo-suffix: ""
 holo-format: "%P%%I% %C%%S%"
 
 ### WORLDS SECTION ###
-# worlds where item drops get holos
+# worlds where item drops get holograms.
 enabled-worlds:
   - "world"
   - "world_nether"
@@ -64,6 +65,8 @@ protection-sources:
 # Notes:
 # - %name% is placeholder of actual item/block/material which is being dropped.
 # - Materials are cross-version supported.
+# - Materials by default are all automatically generated.
+# - Materials may be used only from: https://javadoc.io/doc/com.github.cryptomorin/XSeries/latest/com/cryptomorin/xseries/XMaterial.html
 item-names:
   ACACIA_BOAT: "%name%"
   ACACIA_BUTTON: "%name%"
