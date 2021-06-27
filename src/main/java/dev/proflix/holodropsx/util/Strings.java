@@ -155,7 +155,7 @@ public final class Strings {
             List<String> lore = meta.getLore();
             // last line has watermark
             assert lore != null;
-            return lore.get(lore.size() - 1).equals("HoloDrops");
+            return lore.get(lore.size() - 1).equals("HoloDropsX");
         }
         return false;
     }
