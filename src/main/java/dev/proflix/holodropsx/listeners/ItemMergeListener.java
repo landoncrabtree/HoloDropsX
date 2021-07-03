@@ -25,11 +25,9 @@ public class ItemMergeListener implements Listener {
             return;
         }
         int count = ent.getItemStack().getAmount() + drop.getItemStack().getAmount();
-        if (Main.getSettings().isWorldEnabled(drop.getWorld().getName())) {
-            String name = Strings.makeName(drop, count, "", 0);
-            drop.setCustomName(name);
-            drop.setCustomNameVisible(true);
-        }
+        String name = Strings.makeName(drop, count, "", 0);
+        drop.setCustomName(name);
+        drop.setCustomNameVisible(true);
     }
 
     private boolean isItemProtected(Item item) {

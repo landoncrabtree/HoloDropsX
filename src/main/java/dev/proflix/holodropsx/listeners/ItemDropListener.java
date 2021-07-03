@@ -21,26 +21,23 @@ public class ItemDropListener implements Listener {
     @EventHandler
     public void itemDrop(@NotNull ItemSpawnEvent e) {
         Item drop = e.getEntity();
-        if (Main.getSettings().isWorldEnabled(drop.getWorld().getName())) {
-            ItemStack item = drop.getItemStack();
-            if (item.hasItemMeta()) {
-                if (checkBlacklistLore(Objects.requireNonNull(item.getItemMeta()))) return;
-                if (Strings.hasWatermark(item)) Strings.removeWatermark(item);
-            }
-            if (!Main.getSettings().getProtectedDrops().containsKey(drop)) {
-                String name = Strings.makeName(drop, item.getAmount(), "", 0);
-                drop.setCustomName(name);
-            }
-            drop.setCustomNameVisible(true);
-
-            if (Main.getSettings().getItemGlow()) {
-                String rawName = Strings.makeItemName(drop);
-                if (Main.getSettings().isGlowlisted(rawName)) { // check the raw name
-                    drop.setGlowing(true);
-                    if (Main.getSettings().getGlowColor()) {
-                        ChatColor color = Glow.getColor(rawName);
-                        Glow.setGlowColor(Objects.requireNonNull(color), drop);
-                    }
+        ItemStack item = drop.getItemStack();
+        if (item.hasItemMeta()) {
+            if (checkBlacklistLore(Objects.requireNonNull(item.getItemMeta()))) return;
+            if (Strings.hasWatermark(item)) Strings.removeWatermark(item);
+        }
+        if (!Main.getSettings().getProtectedDrops().containsKey(drop)) {
+            String name = Strings.makeName(drop, item.getAmount(), "", 0);
+            drop.setCustomName(name);
+        }
+        drop.setCustomNameVisible(true);
+        if (Main.getSettings().getItemGlow()) {
+            String rawName = Strings.makeItemName(drop);
+            if (Main.getSettings().isGlowlisted(rawName)) { // check the raw name
+                drop.setGlowing(true);
+                if (Main.getSettings().getGlowColor()) {
+                    ChatColor color = Glow.getColor(rawName);
+                    Glow.setGlowColor(Objects.requireNonNull(color), drop);
                 }
             }
         }
